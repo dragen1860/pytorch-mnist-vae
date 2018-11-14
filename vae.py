@@ -50,16 +50,16 @@ class Encoder(nn.Module):
 class Decoder(nn.Module):
 
 
-    def __init__(self, imgsz, n_hidden, n_output, keep_prob):
+    def __init__(self, dim_z, n_hidden, n_output, keep_prob):
         super(Decoder, self).__init__()
 
-        self.imgsz = imgsz
+        self.dim_z = dim_z
         self.n_hidden = n_hidden
         self.n_output = n_output
         self.keep_prob = keep_prob
 
         self.net = nn.Sequential(
-            nn.Linear(imgsz, n_hidden),
+            nn.Linear(dim_z, n_hidden),
             nn.Tanh(),
             nn.Dropout(keep_prob),
 
@@ -71,13 +71,13 @@ class Decoder(nn.Module):
             nn.Sigmoid()
         )
 
-    def forward(self, x):
+    def forward(self, h):
         """
 
-        :param x:
+        :param h:
         :return:
         """
-        return self.net(x)
+        return self.net(h)
 
 def get_ae(encoder, decoder, x):
     # encoding
@@ -100,8 +100,9 @@ def get_z(encoder, x):
     # sampling by re-parameterization technique
     z = mu + sigma * torch.randn_like(mu)
 
+    return z
 
-def get_loss(encoder, decoder, x, x_hat):
+def get_loss(encoder, decoder, x, x_target):
     """
 
     :param encoder:
@@ -114,6 +115,7 @@ def get_loss(encoder, decoder, x, x_hat):
     :param keep_prob:
     :return:
     """
+    batchsz = x.size(0)
     # encoding
     mu, sigma = encoder(x)
     # sampling by re-parameterization technique
@@ -125,12 +127,12 @@ def get_loss(encoder, decoder, x, x_hat):
 
 
     # loss
-    marginal_likelihood = torch.sum(x_hat * torch.log(y) + (1 - x_hat) * torch.log(1 - y))
+    marginal_likelihood = torch.sum(x_target * torch.log(y) + (1 - x_target) * torch.log(1 - y)) / batchsz
     KL_divergence = 0.5 * torch.sum(
                                 torch.pow(mu, 2) +
                                 torch.pow(sigma, 2) -
                                 torch.log(1e-8 + torch.pow(sigma, 2)) - 1
-                                    )
+                               ).sum() / batchsz
 
     ELBO = marginal_likelihood - KL_divergence
 

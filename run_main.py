@@ -14,7 +14,7 @@ IMAGE_SIZE_MNIST = 28
 
 
 def parse_args():
-    desc = "Tensorflow implementation of 'Variational AutoEncoder (VAE)'"
+    desc = "Pytorch implementation of 'Variational AutoEncoder (VAE)'"
     parser = argparse.ArgumentParser(description=desc)
 
     parser.add_argument('--results_path', type=str, default='results',
@@ -180,14 +180,17 @@ def check_args(args):
 
 
 def main(args):
-    """
-     parameters
-    """
+
+
+    torch.manual_seed(222)
+    torch.cuda.manual_seed_all(222)
+    np.random.seed(222)
+
+
+    device = torch.device('cuda')
+
     RESULTS_DIR = args.results_path
-
-    # network architecture
     ADD_NOISE = args.add_noise
-
     n_hidden = args.n_hidden
     dim_img = IMAGE_SIZE_MNIST ** 2  # number of pixels for a MNIST image
     dim_z = args.dim_z
@@ -211,17 +214,17 @@ def main(args):
     PMLR_n_samples = args.PMLR_n_samples  # number of labeled samples to plot a map from input data space to the latent space
 
     """ prepare MNIST data """
-
     train_total_data, train_size, _, _, test_data, test_labels = mnist_data.prepare_MNIST_data()
     n_samples = train_size
 
-    """ build graph """
+    """ create network """
     keep_prob = 0.9
-    encoder = vae.Encoder(dim_img, n_hidden, dim_img, keep_prob)
-    decoder = vae.Decoder(dim_img, n_hidden, dim_img, keep_prob)
+    encoder = vae.Encoder(dim_img, n_hidden, dim_z, keep_prob).to(device)
+    decoder = vae.Decoder(dim_z, n_hidden, dim_img, keep_prob).to(device)
+    # + operator will return but .extend is inplace no return.
+    optimizer = torch.optim.Adam(list(encoder.parameters()) + list(decoder.parameters()), lr=learn_rate)
 
     """ training """
-
     # Plot for reproduce performance
     if PRR:
         PRR = plot_utils.Plot_Reproduce_Performance(RESULTS_DIR, PRR_n_img_x, PRR_n_img_y, IMAGE_SIZE_MNIST,
@@ -231,6 +234,7 @@ def main(args):
 
         x_PRR_img = x_PRR.reshape(PRR.n_tot_imgs, IMAGE_SIZE_MNIST, IMAGE_SIZE_MNIST)
         PRR.save_images(x_PRR_img, name='input.jpg')
+        print('saved:', 'input.jpg')
 
         if ADD_NOISE:
             x_PRR = x_PRR * np.random.randint(2, size=x_PRR.shape)
@@ -238,6 +242,7 @@ def main(args):
 
             x_PRR_img = x_PRR.reshape(PRR.n_tot_imgs, IMAGE_SIZE_MNIST, IMAGE_SIZE_MNIST)
             PRR.save_images(x_PRR_img, name='input_noise.jpg')
+            print('saved:', 'input_noise.jpg')
 
     # Plot for manifold learning result
     if PMLR and dim_z == 2:
@@ -252,13 +257,14 @@ def main(args):
             x_PMLR = x_PMLR * np.random.randint(2, size=x_PMLR.shape)
             x_PMLR += np.random.randint(2, size=x_PMLR.shape)
 
+    x_PRR = torch.from_numpy(x_PRR).float().to(device)
+    z_ = torch.from_numpy(PMLR.z).float().to(device)
+    x_PMLR = torch.from_numpy(x_PMLR).float().to(device)
+
 
     # train
     total_batch = int(n_samples / batch_size)
-    min_tot_loss = 1e99
-
-    optimizer = torch.optim.Adam([encoder.parameters(), decoder.parameters()], lr=1e-3)
-
+    min_tot_loss = np.inf
     for epoch in range(n_epochs):
 
         # Random shuffling
@@ -280,9 +286,11 @@ def main(args):
                 batch_xs_input = batch_xs_input * np.random.randint(2, size=batch_xs_input.shape)
                 batch_xs_input += np.random.randint(2, size=batch_xs_input.shape)
 
+            batch_xs_input, batch_xs_target = torch.from_numpy(batch_xs_input).float().to(device), \
+                                              torch.from_numpy(batch_xs_target).float().to(device)
 
             y, z, tot_loss, loss_likelihood, loss_divergence = \
-                                        vae.autoencoder(encoder, decoder, batch_xs_target, batch_xs_input)
+                                        vae.get_loss(encoder, decoder, batch_xs_target, batch_xs_input)
 
             optimizer.zero_grad()
             tot_loss.backward()
@@ -294,28 +302,32 @@ def main(args):
         print("epoch %d: L_tot %03.2f L_likelihood %03.2f L_divergence %03.2f" % (
                                                 epoch, tot_loss.item(), loss_likelihood.item(), loss_divergence.item()))
 
+        encoder.eval()
+        decoder.eval()
         # if minimum loss is updated or final epoch, plot results
         if min_tot_loss > tot_loss.item() or epoch + 1 == n_epochs:
             min_tot_loss = tot_loss.item()
             # Plot for reproduce performance
             if PRR:
-                encoder.eval()
-                y_PRR = vae.get_ae(encoder, x_PRR)
+                y_PRR = vae.get_ae(encoder, decoder, x_PRR)
 
                 y_PRR_img = y_PRR.reshape(PRR.n_tot_imgs, IMAGE_SIZE_MNIST, IMAGE_SIZE_MNIST)
-                PRR.save_images(y_PRR_img, name="/PRR_epoch_%02d" % (epoch) + ".jpg")
+                PRR.save_images(y_PRR_img.detach().cpu().numpy(), name="/PRR_epoch_%02d" % (epoch) + ".jpg")
+                print('saved:', "/PRR_epoch_%02d" % (epoch) + ".jpg")
 
             # Plot for manifold learning result
             if PMLR and dim_z == 2:
-                decoder.eval()
-                y_PMLR = decoder(PMLR.z)
+                y_PMLR = decoder(z_)
 
                 y_PMLR_img = y_PMLR.reshape(PMLR.n_tot_imgs, IMAGE_SIZE_MNIST, IMAGE_SIZE_MNIST)
-                PMLR.save_images(y_PMLR_img, name="/PMLR_epoch_%02d" % (epoch) + ".jpg")
+                PMLR.save_images(y_PMLR_img.detach().cpu().numpy(), name="/PMLR_epoch_%02d" % (epoch) + ".jpg")
+                print('saved:', "/PMLR_epoch_%02d" % (epoch) + ".jpg")
 
                 # plot distribution of labeled images
                 z_PMLR = vae.get_z(encoder, x_PMLR)
-                PMLR.save_scattered_image(z_PMLR, id_PMLR, name="/PMLR_map_epoch_%02d" % (epoch) + ".jpg")
+                PMLR.save_scattered_image(z_PMLR.detach().cpu().numpy(), id_PMLR,
+                                          name="/PMLR_map_epoch_%02d" % (epoch) + ".jpg")
+                print('saved:', "/PMLR_map_epoch_%02d" % (epoch) + ".jpg")
 
 
 if __name__ == '__main__':

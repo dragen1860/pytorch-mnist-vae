@@ -1,6 +1,13 @@
 # Variational Auto-Encoder for MNIST
+- Pytorch: 0.4+
+- Python: 3.6+
+
+
 An implementation of variational auto-encoder (VAE) for MNIST descripbed in the paper:  
 * [Auto-Encoding Variational Bayes](https://arxiv.org/pdf/1312.6114) by Kingma et al.
+
+> This repo. is developed based on [Tensorflow-mnist-vae](https://github.com/hwalsuklee/tensorflow-mnist-VAE).
+
 
 ## Results
 ### Reproduce

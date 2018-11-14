@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c2c026-5f3b-469a-ae78-61f458e8da2a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/mnist_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/mnist_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vae.py" beforeDir="false" afterPath="$PROJECT_DIR$/vae.py" afterDir="false" />
     </list>
@@ -42,12 +40,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1351" />
+          <entry key="py" value="1826" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1351" />
+          <entry key="Python" value="1826" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -67,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="316" column="51" lean-forward="true" selection-start-line="316" selection-start-column="51" selection-end-line="316" selection-end-column="51" />
+            <state relative-caret-position="354">
+              <caret line="266" column="25" lean-forward="true" selection-start-line="266" selection-start-column="25" selection-end-line="266" selection-end-column="25" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
                 <element signature="e#2554#5363#0" />
@@ -80,7 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plot_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="433">
+              <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -100,12 +99,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vae.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+            <state relative-caret-position="367">
+              <caret line="128" column="10" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
               <folding>
                 <element signature="e#1#14#0" expanded="true" />
-                <marker date="1542174749183" expanded="true" signature="2182:2185" ph="..." />
-                <marker date="1542174749183" expanded="true" signature="2422:3115" ph="..." />
+                <marker date="1542177100545" expanded="true" signature="2182:2198" ph="..." />
+                <marker date="1542177100545" expanded="true" signature="2462:3182" ph="..." />
               </folding>
             </state>
           </provider>
@@ -247,38 +246,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/run_main.py</url>
-          <line>214</line>
+          <line>216</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/plot_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/tensorflow/python/ops/gen_nn_ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="7256" column="4" selection-start-line="7256" selection-start-column="4" selection-end-line="7256" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vae.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
-          <folding>
-            <element signature="e#1#14#0" expanded="true" />
-            <marker date="1542174749183" expanded="true" signature="2182:2185" ph="..." />
-            <marker date="1542174749183" expanded="true" signature="2422:3115" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -289,10 +267,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/plot_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vae.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="128" column="10" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
+          <folding>
+            <element signature="e#1#14#0" expanded="true" />
+            <marker date="1542177100545" expanded="true" signature="2182:2198" ph="..." />
+            <marker date="1542177100545" expanded="true" signature="2462:3182" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/run_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="316" column="51" lean-forward="true" selection-start-line="316" selection-start-column="51" selection-end-line="316" selection-end-column="51" />
+        <state relative-caret-position="354">
+          <caret line="266" column="25" lean-forward="true" selection-start-line="266" selection-start-column="25" selection-end-line="266" selection-end-column="25" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
             <element signature="e#2554#5363#0" />
