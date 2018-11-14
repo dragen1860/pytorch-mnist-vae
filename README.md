@@ -10,6 +10,7 @@ An Pytorch Implementation of variational auto-encoder (VAE) for MNIST descripbed
 
 
 ## Results
+To reproduce VAE, dropout is harmful.
 ### Reproduce
 Well trained VAE must be able to reproduce input image.  
 Figure 5 in the paper shows reproduce performance of learned generative models for different dimensionalities.  
@@ -28,10 +29,10 @@ python run_main.py --dim_z <each value> --num_epochs 60
 </tr>
 <tr>
 <td><img src = 'res/input.jpg' height = '150px'>
-<td><img src = 'res/dim_z_2.jpg' height = '150px'>
-<td><img src = 'res/dim_z_5.jpg' height = '150px'>
-<td><img src = 'res/dim_z_10.jpg' height = '150px'>
-<td><img src = 'res/dim_z_20.jpg' height = '150px'>
+<td><img src = 'res/dim_2_sample.jpg' height = '150px'>
+<td><img src = 'res/dim_5_sample.jpg' height = '150px'>
+<td><img src = 'res/dim_10_sample.jpg' height = '150px'>
+<td><img src = 'res/dim_20_sample.jpg' height = '150px'>
 </tr>
 </table>
 
@@ -67,14 +68,14 @@ python run_main.py --dim_z 2 --num_epochs 60 --PMLR True
 <td> Distribution of labeled data  </td>
 </tr>
 <tr>
-<td><img src = 'res/PMLR.jpg' height = '400px'>
-<td><img src = 'res/PMLR_map.jpg' height = '400px'>
+<td><img src = 'res/dim_2_mf.jpg' height = '400px'>
+<td><img src = 'res/dim_2_cluster.jpg' height = '400px'>
 </tr>
 </table>
 
 ## Usage
 ### Prerequisites
-1. Tensorflow
+1. Pytorch
 2. Python packages : numpy, scipy, PIL(or Pillow), matplotlib
 
 ### Command

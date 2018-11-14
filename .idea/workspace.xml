@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7c2c026-5f3b-469a-ae78-61f458e8da2a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_epoch_00.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_epoch_01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_epoch_02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_map_epoch_00.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_map_epoch_01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_map_epoch_02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PRR_epoch_00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PRR_epoch_00.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PRR_epoch_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PRR_epoch_01.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PRR_epoch_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PRR_epoch_02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vae.py" beforeDir="false" afterPath="$PROJECT_DIR$/vae.py" afterDir="false" />
-    </list>
+    <list default="true" id="b7c2c026-5f3b-469a-ae78-61f458e8da2a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,8 +96,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vae.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="44">
+              <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
               <folding>
                 <element signature="e#1#14#0" expanded="true" />
                 <marker date="1542198973521" expanded="true" signature="3255:3729" ph="..." />
@@ -429,8 +416,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vae.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="44">
+          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
           <folding>
             <element signature="e#1#14#0" expanded="true" />
             <marker date="1542198973521" expanded="true" signature="3255:3729" ph="..." />
