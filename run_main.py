@@ -218,7 +218,7 @@ def main(args):
     n_samples = train_size
 
     """ create network """
-    keep_prob = 1.
+    keep_prob = 0.99
     encoder = vae.Encoder(dim_img, n_hidden, dim_z, keep_prob).to(device)
     decoder = vae.Decoder(dim_z, n_hidden, dim_img, keep_prob).to(device)
     # + operator will return but .extend is inplace no return.

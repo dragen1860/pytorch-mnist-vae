@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b7c2c026-5f3b-469a-ae78-61f458e8da2a" name="Default Changelist" comment="" />
+    <list default="true" id="b7c2c026-5f3b-469a-ae78-61f458e8da2a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vae.py" beforeDir="false" afterPath="$PROJECT_DIR$/vae.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,18 +35,21 @@
     <session id="-2093924913">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2559" />
+          <entry key="py" value="2575" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2559" />
+          <entry key="Python" value="2575" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -59,11 +66,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="220" column="18" selection-start-line="220" selection-start-column="18" selection-end-line="220" selection-end-column="18" />
+            <state relative-caret-position="301">
+              <caret line="220" column="20" lean-forward="true" selection-start-line="220" selection-start-column="20" selection-end-line="220" selection-end-column="20" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
                 <element signature="e#2540#5351#0" />
@@ -75,7 +82,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plot_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
+            <state relative-caret-position="2420">
               <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -87,21 +94,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mnist_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
+            <state relative-caret-position="2310">
               <caret line="117" column="4" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vae.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
-              <folding>
-                <element signature="e#1#14#0" expanded="true" />
-                <marker date="1542198973521" expanded="true" signature="3255:3729" ph="..." />
-              </folding>
+            <state relative-caret-position="726">
+              <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -109,7 +112,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/modules/dropout.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
+            <state relative-caret-position="396">
               <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
             </state>
           </provider>
@@ -118,7 +121,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
+            <state relative-caret-position="550">
               <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -131,7 +134,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/functional.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
+            <state relative-caret-position="18040">
               <caret line="833" selection-start-line="833" selection-end-line="833" />
             </state>
           </provider>
@@ -140,7 +143,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/init.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
+            <state relative-caret-position="6402">
               <caret line="295" column="4" selection-start-line="295" selection-start-column="4" selection-end-line="295" selection-end-column="4" />
             </state>
           </provider>
@@ -149,7 +152,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/modules/linear.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
+            <state relative-caret-position="682">
               <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
             </state>
           </provider>
@@ -158,7 +161,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/tensorflow/python/ops/gen_nn_ops.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
+            <state relative-caret-position="159236">
               <caret line="7256" column="4" selection-start-line="7256" selection-start-column="4" selection-end-line="7256" selection-end-column="4" />
             </state>
           </provider>
@@ -186,16 +189,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/run_main.py" />
         <option value="$PROJECT_DIR$/vae.py" />
+        <option value="$PROJECT_DIR$/run_main.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1985" />
-    <option name="y" value="-4" />
-    <option name="width" value="1855" />
-    <option name="height" value="1084" />
+    <option name="x" value="2027" />
+    <option name="y" value="163" />
+    <option name="width" value="1853" />
+    <option name="height" value="1076" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -293,7 +296,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1985" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="1984" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13864629" />
@@ -330,16 +333,16 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/tensorflow/python/ops/gen_nn_ops.py">
+    <entry file="file://$PROJECT_DIR$/vae2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="7256" column="4" selection-start-line="7256" selection-start-column="4" selection-end-line="7256" selection-end-column="4" />
+        <state relative-caret-position="706">
+          <caret line="86" column="14" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plot_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
+        <state relative-caret-position="2420">
           <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -347,23 +350,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/modules/linear.py">
+    <entry file="file://$PROJECT_DIR$/mnist_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+        <state relative-caret-position="2310">
+          <caret line="117" column="4" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/init.py">
+    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/modules/dropout.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="295" column="4" selection-start-line="295" selection-start-column="4" selection-end-line="295" selection-end-column="4" />
+        <state relative-caret-position="396">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
+        <state relative-caret-position="550">
           <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -374,53 +377,46 @@
     </entry>
     <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/functional.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
+        <state relative-caret-position="18040">
           <caret line="833" selection-start-line="833" selection-end-line="833" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vae2.py">
+    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/init.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="706">
-          <caret line="86" column="14" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="6402">
+          <caret line="295" column="4" selection-start-line="295" selection-start-column="4" selection-end-line="295" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/modules/dropout.py">
+    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/modules/linear.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        <state relative-caret-position="682">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run_main.py">
+    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/tensorflow/python/ops/gen_nn_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="220" column="18" selection-start-line="220" selection-start-column="18" selection-end-line="220" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-            <element signature="e#2540#5351#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="117" column="4" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="4" />
+        <state relative-caret-position="159236">
+          <caret line="7256" column="4" selection-start-line="7256" selection-start-column="4" selection-end-line="7256" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vae.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+        <state relative-caret-position="726">
+          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="220" column="20" lean-forward="true" selection-start-line="220" selection-start-column="20" selection-end-line="220" selection-end-column="20" />
           <folding>
-            <element signature="e#1#14#0" expanded="true" />
-            <marker date="1542198973521" expanded="true" signature="3255:3729" ph="..." />
+            <element signature="e#0#12#0" expanded="true" />
+            <element signature="e#2540#5351#0" />
           </folding>
         </state>
       </provider>
