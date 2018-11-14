@@ -79,6 +79,25 @@ class Decoder(nn.Module):
         """
         return self.net(h)
 
+
+
+def init_weights(encoder, decoder):
+
+    def init_(m):
+        with torch.no_grad():
+            if isinstance(m, nn.Linear):
+                nn.init.kaiming_normal_(m.weight)
+                nn.init.constant_(m.bias, 0.0)
+
+    for m in encoder.modules():
+        m.apply(init_)
+    for m in decoder.modules():
+        m.apply(init_)
+
+    print('weights inited!')
+
+
+
 def get_ae(encoder, decoder, x):
     # encoding
     mu, sigma = encoder(x)
@@ -127,7 +146,10 @@ def get_loss(encoder, decoder, x, x_target):
 
 
     # loss
-    marginal_likelihood = torch.sum(x_target * torch.log(y) + (1 - x_target) * torch.log(1 - y)) / batchsz
+    # marginal_likelihood2 = torch.sum(x_target * torch.log(y) + (1 - x_target) * torch.log(1 - y)) / batchsz
+    marginal_likelihood = -F.binary_cross_entropy(y, x_target, reduction='sum') / batchsz
+    # print(marginal_likelihood2.item(), marginal_likelihood.item())
+
     KL_divergence = 0.5 * torch.sum(
                                 torch.pow(mu, 2) +
                                 torch.pow(sigma, 2) -
@@ -138,7 +160,7 @@ def get_loss(encoder, decoder, x, x_target):
 
     loss = -ELBO
 
-    return y, z, loss, -marginal_likelihood, KL_divergence
+    return y, z, loss, marginal_likelihood, KL_divergence
 
 
 # # Gaussian MLP as encoder

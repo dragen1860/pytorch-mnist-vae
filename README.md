@@ -3,7 +3,7 @@
 - Python: 3.6+
 
 
-An implementation of variational auto-encoder (VAE) for MNIST descripbed in the paper:  
+An Pytorch Implementation of variational auto-encoder (VAE) for MNIST descripbed in the paper:  
 * [Auto-Encoding Variational Bayes](https://arxiv.org/pdf/1312.6114) by Kingma et al.
 
 > This repo. is developed based on [Tensorflow-mnist-vae](https://github.com/hwalsuklee/tensorflow-mnist-VAE).
@@ -27,11 +27,11 @@ python run_main.py --dim_z <each value> --num_epochs 60
 <td> 20-D latent space </td>
 </tr>
 <tr>
-<td><img src = 'results/input.jpg' height = '150px'>
-<td><img src = 'results/dim_z_2.jpg' height = '150px'>
-<td><img src = 'results/dim_z_5.jpg' height = '150px'>
-<td><img src = 'results/dim_z_10.jpg' height = '150px'>
-<td><img src = 'results/dim_z_20.jpg' height = '150px'>
+<td><img src = 'res/input.jpg' height = '150px'>
+<td><img src = 'res/dim_z_2.jpg' height = '150px'>
+<td><img src = 'res/dim_z_5.jpg' height = '150px'>
+<td><img src = 'res/dim_z_10.jpg' height = '150px'>
+<td><img src = 'res/dim_z_20.jpg' height = '150px'>
 </tr>
 </table>
 
@@ -49,9 +49,9 @@ python run_main.py --dim_z 20 --add_noise True --num_epochs 40
 <td> Restored image via VAE </td>
 </tr>
 <tr>
-<td><img src = 'results/input.jpg' height = '300px'>
-<td><img src = 'results/input_noise.jpg' height = '300px'>
-<td><img src = 'results/denoising.jpg' height = '300px'>
+<td><img src = 'res/input.jpg' height = '300px'>
+<td><img src = 'res/input_noise.jpg' height = '300px'>
+<td><img src = 'res/denoising.jpg' height = '300px'>
 </tr>
 </table>
 
@@ -67,8 +67,8 @@ python run_main.py --dim_z 2 --num_epochs 60 --PMLR True
 <td> Distribution of labeled data  </td>
 </tr>
 <tr>
-<td><img src = 'results/PMLR.jpg' height = '400px'>
-<td><img src = 'results/PMLR_map.jpg' height = '400px'>
+<td><img src = 'res/PMLR.jpg' height = '400px'>
+<td><img src = 'res/PMLR_map.jpg' height = '400px'>
 </tr>
 </table>
 
@@ -112,5 +112,3 @@ The implementation is based on the projects:
 [3] https://github.com/kvfrans/variational-autoencoder  
 [4] https://github.com/altosaar/vae
 
-## Acknowledgements
-This implementation has been tested with Tensorflow r0.12 on Windows 10.

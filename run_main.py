@@ -182,9 +182,9 @@ def check_args(args):
 def main(args):
 
 
-    torch.manual_seed(222)
-    torch.cuda.manual_seed_all(222)
-    np.random.seed(222)
+    # torch.manual_seed(222)
+    # torch.cuda.manual_seed_all(222)
+    # np.random.seed(222)
 
 
     device = torch.device('cuda')
@@ -223,6 +223,7 @@ def main(args):
     decoder = vae.Decoder(dim_z, n_hidden, dim_img, keep_prob).to(device)
     # + operator will return but .extend is inplace no return.
     optimizer = torch.optim.Adam(list(encoder.parameters()) + list(decoder.parameters()), lr=learn_rate)
+    # vae.init_weights(encoder, decoder)
 
     """ training """
     # Plot for reproduce performance
@@ -244,6 +245,8 @@ def main(args):
             PRR.save_images(x_PRR_img, name='input_noise.jpg')
             print('saved:', 'input_noise.jpg')
 
+        x_PRR = torch.from_numpy(x_PRR).float().to(device)
+
     # Plot for manifold learning result
     if PMLR and dim_z == 2:
 
@@ -257,9 +260,9 @@ def main(args):
             x_PMLR = x_PMLR * np.random.randint(2, size=x_PMLR.shape)
             x_PMLR += np.random.randint(2, size=x_PMLR.shape)
 
-    x_PRR = torch.from_numpy(x_PRR).float().to(device)
-    z_ = torch.from_numpy(PMLR.z).float().to(device)
-    x_PMLR = torch.from_numpy(x_PMLR).float().to(device)
+
+        z_ = torch.from_numpy(PMLR.z).float().to(device)
+        x_PMLR = torch.from_numpy(x_PMLR).float().to(device)
 
 
     # train
@@ -289,8 +292,11 @@ def main(args):
             batch_xs_input, batch_xs_target = torch.from_numpy(batch_xs_input).float().to(device), \
                                               torch.from_numpy(batch_xs_target).float().to(device)
 
+            assert not torch.isnan(batch_xs_input).any()
+            assert not torch.isnan(batch_xs_target).any()
+
             y, z, tot_loss, loss_likelihood, loss_divergence = \
-                                        vae.get_loss(encoder, decoder, batch_xs_target, batch_xs_input)
+                                        vae.get_loss(encoder, decoder, batch_xs_input, batch_xs_target)
 
             optimizer.zero_grad()
             tot_loss.backward()
@@ -298,15 +304,19 @@ def main(args):
 
 
 
-        # print cost every epoch
+            # print cost every epoch
         print("epoch %d: L_tot %03.2f L_likelihood %03.2f L_divergence %03.2f" % (
                                                 epoch, tot_loss.item(), loss_likelihood.item(), loss_divergence.item()))
+
+
+
 
         encoder.eval()
         decoder.eval()
         # if minimum loss is updated or final epoch, plot results
         if min_tot_loss > tot_loss.item() or epoch + 1 == n_epochs:
             min_tot_loss = tot_loss.item()
+
             # Plot for reproduce performance
             if PRR:
                 y_PRR = vae.get_ae(encoder, decoder, x_PRR)
