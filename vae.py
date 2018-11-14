@@ -17,11 +17,11 @@ class Encoder(nn.Module):
         self.net = nn.Sequential(
             nn.Linear(imgsz, n_hidden),
             nn.ELU(inplace=True),
-            nn.Dropout(keep_prob),
+            # nn.Dropout(p=keep_prob),
 
             nn.Linear(n_hidden, n_hidden),
             nn.Tanh(),
-            nn.Dropout(keep_prob),
+            # nn.Dropout(p=keep_prob),
 
             nn.Linear(n_hidden, n_output*2)
 
@@ -61,11 +61,11 @@ class Decoder(nn.Module):
         self.net = nn.Sequential(
             nn.Linear(dim_z, n_hidden),
             nn.Tanh(),
-            nn.Dropout(keep_prob),
+            # nn.Dropout(p=keep_prob),
 
             nn.Linear(n_hidden, n_hidden),
             nn.ELU(),
-            nn.Dropout(keep_prob),
+            # nn.Dropout(p=keep_prob),
 
             nn.Linear(n_hidden, n_output),
             nn.Sigmoid()

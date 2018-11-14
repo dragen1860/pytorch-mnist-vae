@@ -2,30 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c2c026-5f3b-469a-ae78-61f458e8da2a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_epoch_00.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_epoch_01.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_epoch_02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_epoch_09.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_17.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_epoch_59.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_map_epoch_00.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_map_epoch_01.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_map_epoch_02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PMLR_map_epoch_09.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_17.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PMLR_map_epoch_59.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PRR_epoch_00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PRR_epoch_00.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PRR_epoch_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PRR_epoch_01.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/PRR_epoch_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PRR_epoch_02.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PRR_epoch_09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/results/PRR_epoch_09.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PRR_epoch_16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PRR_epoch_17.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/PRR_epoch_59.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vae.py" beforeDir="false" afterPath="$PROJECT_DIR$/vae.py" afterDir="false" />
     </list>
@@ -64,36 +50,36 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2551" />
+          <entry key="py" value="2559" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2551" />
+          <entry key="Python" value="2559" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="5" />
+          <entry key="py" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="5" />
+          <entry key="Python" value="6" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-438">
-              <caret line="284" column="44" lean-forward="true" selection-start-line="284" selection-start-column="44" selection-end-line="284" selection-end-column="44" />
+            <state relative-caret-position="268">
+              <caret line="220" column="18" selection-start-line="220" selection-start-column="18" selection-end-line="220" selection-end-column="18" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <element signature="e#2554#5363#0" />
+                <element signature="e#2540#5351#0" />
               </folding>
             </state>
           </provider>
@@ -114,23 +100,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mnist_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
+            <state relative-caret-position="354">
               <caret line="117" column="4" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vae.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="160" column="16" lean-forward="true" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="16" />
+            <state relative-caret-position="396">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#1#14#0" expanded="true" />
-                <marker date="1542184778713" expanded="true" signature="1809:2140" ph="..." />
-                <marker date="1542184778713" expanded="true" signature="2551:2567" ph="..." />
-                <marker date="1542184778713" expanded="true" signature="2831:3713" ph="..." />
+                <marker date="1542198973521" expanded="true" signature="3255:3729" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/modules/dropout.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -206,8 +199,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/vae.py" />
         <option value="$PROJECT_DIR$/run_main.py" />
+        <option value="$PROJECT_DIR$/vae.py" />
       </list>
     </option>
   </component>
@@ -343,7 +336,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/run_main.py</url>
-          <line>216</line>
+          <line>214</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -392,13 +385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="117" column="4" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/functional.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
@@ -406,26 +392,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vae.py">
+    <entry file="file://$PROJECT_DIR$/vae2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="160" column="16" lean-forward="true" selection-start-line="160" selection-start-column="16" selection-end-line="160" selection-end-column="16" />
+        <state relative-caret-position="706">
+          <caret line="86" column="14" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
           <folding>
-            <element signature="e#1#14#0" expanded="true" />
-            <marker date="1542184778713" expanded="true" signature="1809:2140" ph="..." />
-            <marker date="1542184778713" expanded="true" signature="2551:2567" ph="..." />
-            <marker date="1542184778713" expanded="true" signature="2831:3713" ph="..." />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/conda/lib/python3.6/site-packages/torch/nn/modules/dropout.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-438">
-          <caret line="284" column="44" lean-forward="true" selection-start-line="284" selection-start-column="44" selection-end-line="284" selection-end-column="44" />
+        <state relative-caret-position="268">
+          <caret line="220" column="18" selection-start-line="220" selection-start-column="18" selection-end-line="220" selection-end-column="18" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <element signature="e#2554#5363#0" />
+            <element signature="e#2540#5351#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mnist_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="117" column="4" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vae.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#1#14#0" expanded="true" />
+            <marker date="1542198973521" expanded="true" signature="3255:3729" ph="..." />
           </folding>
         </state>
       </provider>
