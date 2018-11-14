@@ -10,7 +10,12 @@ An Pytorch Implementation of variational auto-encoder (VAE) for MNIST descripbed
 
 
 ## Results
-To reproduce VAE, dropout is harmful.
+NOTICE:
+```
+tf.nn.dropout(keep_prob=0.9)
+torch.nn.Dropout(p=1-keep_prob)
+```
+
 ### Reproduce
 Well trained VAE must be able to reproduce input image.  
 Figure 5 in the paper shows reproduce performance of learned generative models for different dimensionalities.  
