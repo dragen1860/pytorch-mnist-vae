@@ -24,6 +24,7 @@ PIXEL_DEPTH = 255
 NUM_LABELS = 10
 VALIDATION_SIZE = 5000  # Size of the validation set.
 
+
 # Download MNIST data
 def maybe_download(filename):
     """Download the data from Yann's website, unless it's already here."""
@@ -36,6 +37,7 @@ def maybe_download(filename):
             size = f.size()
         print('Successfully downloaded', filename, size, 'bytes.')
     return filepath
+
 
 # Extract the images
 def extract_data(filename, num_images, norm_shift=False, norm_scale=True):
@@ -55,6 +57,7 @@ def extract_data(filename, num_images, norm_shift=False, norm_scale=True):
         data = numpy.reshape(data, [num_images, -1])
     return data
 
+
 # Extract the labels
 def extract_labels(filename, num_images):
     """Extract the labels into a vector of int64 label IDs."""
@@ -64,22 +67,22 @@ def extract_labels(filename, num_images):
         buf = bytestream.read(1 * num_images)
         labels = numpy.frombuffer(buf, dtype=numpy.uint8).astype(numpy.int64)
         num_labels_data = len(labels)
-        one_hot_encoding = numpy.zeros((num_labels_data,NUM_LABELS))
-        one_hot_encoding[numpy.arange(num_labels_data),labels] = 1
+        one_hot_encoding = numpy.zeros((num_labels_data, NUM_LABELS))
+        one_hot_encoding[numpy.arange(num_labels_data), labels] = 1
         one_hot_encoding = numpy.reshape(one_hot_encoding, [-1, NUM_LABELS])
     return one_hot_encoding
 
+
 # Augment training data
 def expend_training_data(images, labels):
-
     expanded_images = []
     expanded_labels = []
 
-    j = 0 # counter
+    j = 0  # counter
     for x, y in zip(images, labels):
-        j = j+1
-        if j%100==0:
-            print ('expanding data : %03d / %03d' % (j,numpy.size(images,0)))
+        j = j + 1
+        if j % 100 == 0:
+            print('expanding data : %03d / %03d' % (j, numpy.size(images, 0)))
 
         # register original data
         expanded_images.append(x)
@@ -87,17 +90,17 @@ def expend_training_data(images, labels):
 
         # get a value for the background
         # zero is the expected value, but median() is used to estimate background's value
-        bg_value = numpy.median(x) # this is regarded as background's value
+        bg_value = numpy.median(x)  # this is regarded as background's value
         image = numpy.reshape(x, (-1, 28))
 
         for i in range(4):
             # rotate the image with random degree
-            angle = numpy.random.randint(-15,15,1)
-            new_img = ndimage.rotate(image,angle,reshape=False, cval=bg_value)
+            angle = numpy.random.randint(-15, 15, 1)
+            new_img = ndimage.rotate(image, angle, reshape=False, cval=bg_value)
 
             # shift the image with random distance
             shift = numpy.random.randint(-2, 2, 2)
-            new_img_ = ndimage.shift(new_img,shift, cval=bg_value)
+            new_img_ = ndimage.shift(new_img, shift, cval=bg_value)
 
             # register new training data
             expanded_images.append(numpy.reshape(new_img_, 784))
@@ -109,6 +112,7 @@ def expend_training_data(images, labels):
     numpy.random.shuffle(expanded_train_total_data)
 
     return expanded_train_total_data
+
 
 # Prepare MNISt data
 def prepare_MNIST_data(use_norm_shift=False, use_norm_scale=True, use_data_augmentation=False):
@@ -126,9 +130,9 @@ def prepare_MNIST_data(use_norm_shift=False, use_norm_scale=True, use_data_augme
 
     # Generate a validation set.
     validation_data = train_data[:VALIDATION_SIZE, :]
-    validation_labels = train_labels[:VALIDATION_SIZE,:]
+    validation_labels = train_labels[:VALIDATION_SIZE, :]
     train_data = train_data[VALIDATION_SIZE:, :]
-    train_labels = train_labels[VALIDATION_SIZE:,:]
+    train_labels = train_labels[VALIDATION_SIZE:, :]
 
     # Concatenate train_data & train_labels for random shuffle
     if use_data_augmentation:

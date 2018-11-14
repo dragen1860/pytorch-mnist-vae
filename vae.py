@@ -1,88 +1,136 @@
-import tensorflow as tf
+import  torch
+from    torch import nn
+from    torch.nn import functional as F
 
-# Gaussian MLP as encoder
-def gaussian_MLP_encoder(x, n_hidden, n_output, keep_prob):
-    with tf.variable_scope("gaussian_MLP_encoder"):
-        # initializers
-        w_init = tf.contrib.layers.variance_scaling_initializer()
-        b_init = tf.constant_initializer(0.)
 
-        # 1st hidden layer
-        w0 = tf.get_variable('w0', [x.get_shape()[1], n_hidden], initializer=w_init)
-        b0 = tf.get_variable('b0', [n_hidden], initializer=b_init)
-        h0 = tf.matmul(x, w0) + b0
-        h0 = tf.nn.elu(h0)
-        h0 = tf.nn.dropout(h0, keep_prob)
+class Encoder(nn.Module):
 
-        # 2nd hidden layer
-        w1 = tf.get_variable('w1', [h0.get_shape()[1], n_hidden], initializer=w_init)
-        b1 = tf.get_variable('b1', [n_hidden], initializer=b_init)
-        h1 = tf.matmul(h0, w1) + b1
-        h1 = tf.nn.tanh(h1)
-        h1 = tf.nn.dropout(h1, keep_prob)
 
-        # output layer
-        # borrowed from https: // github.com / altosaar / vae / blob / master / vae.py
-        wo = tf.get_variable('wo', [h1.get_shape()[1], n_output * 2], initializer=w_init)
-        bo = tf.get_variable('bo', [n_output * 2], initializer=b_init)
-        gaussian_params = tf.matmul(h1, wo) + bo
+    def __init__(self, imgsz, n_hidden, n_output, keep_prob):
+        super(Encoder, self).__init__()
+
+        self.imgsz = imgsz
+        self.n_hidden = n_hidden
+        self.n_output = n_output
+        self.keep_prob = keep_prob
+
+        self.net = nn.Sequential(
+            nn.Linear(imgsz, n_hidden),
+            nn.ELU(inplace=True),
+            nn.Dropout(keep_prob),
+
+            nn.Linear(n_hidden, n_hidden),
+            nn.Tanh(),
+            nn.Dropout(keep_prob),
+
+            nn.Linear(n_hidden, n_output*2)
+
+        )
+
+    def forward(self, x):
+        """
+
+        :param x:
+        :return:
+        """
+        mu_sigma = self.net(x)
+
 
         # The mean parameter is unconstrained
-        mean = gaussian_params[:, :n_output]
+        mean = mu_sigma[:, :self.n_output]
         # The standard deviation must be positive. Parametrize with a softplus and
         # add a small epsilon for numerical stability
-        stddev = 1e-6 + tf.nn.softplus(gaussian_params[:, n_output:])
+        stddev = 1e-6 + F.softplus(mu_sigma[:, self.n_output:])
 
-    return mean, stddev
 
-# Bernoulli MLP as decoder
-def bernoulli_MLP_decoder(z, n_hidden, n_output, keep_prob, reuse=False):
+        return mean, stddev
 
-    with tf.variable_scope("bernoulli_MLP_decoder", reuse=reuse):
-        # initializers
-        w_init = tf.contrib.layers.variance_scaling_initializer()
-        b_init = tf.constant_initializer(0.)
 
-        # 1st hidden layer
-        w0 = tf.get_variable('w0', [z.get_shape()[1], n_hidden], initializer=w_init)
-        b0 = tf.get_variable('b0', [n_hidden], initializer=b_init)
-        h0 = tf.matmul(z, w0) + b0
-        h0 = tf.nn.tanh(h0)
-        h0 = tf.nn.dropout(h0, keep_prob)
 
-        # 2nd hidden layer
-        w1 = tf.get_variable('w1', [h0.get_shape()[1], n_hidden], initializer=w_init)
-        b1 = tf.get_variable('b1', [n_hidden], initializer=b_init)
-        h1 = tf.matmul(h0, w1) + b1
-        h1 = tf.nn.elu(h1)
-        h1 = tf.nn.dropout(h1, keep_prob)
+class Decoder(nn.Module):
 
-        # output layer-mean
-        wo = tf.get_variable('wo', [h1.get_shape()[1], n_output], initializer=w_init)
-        bo = tf.get_variable('bo', [n_output], initializer=b_init)
-        y = tf.sigmoid(tf.matmul(h1, wo) + bo)
+
+    def __init__(self, imgsz, n_hidden, n_output, keep_prob):
+        super(Decoder, self).__init__()
+
+        self.imgsz = imgsz
+        self.n_hidden = n_hidden
+        self.n_output = n_output
+        self.keep_prob = keep_prob
+
+        self.net = nn.Sequential(
+            nn.Linear(imgsz, n_hidden),
+            nn.Tanh(),
+            nn.Dropout(keep_prob),
+
+            nn.Linear(n_hidden, n_hidden),
+            nn.ELU(),
+            nn.Dropout(keep_prob),
+
+            nn.Linear(n_hidden, n_output),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x):
+        """
+
+        :param x:
+        :return:
+        """
+        return self.net(x)
+
+def get_ae(encoder, decoder, x):
+    # encoding
+    mu, sigma = encoder(x)
+    # sampling by re-parameterization technique
+    z = mu + sigma * torch.randn_like(mu)
+
+    # decoding
+    y = decoder(z)
+    y = torch.clamp(y, 1e-8, 1 - 1e-8)
 
     return y
 
-# Gateway
-def autoencoder(x_hat, x, dim_img, dim_z, n_hidden, keep_prob):
+
+
+def get_z(encoder, x):
 
     # encoding
-    mu, sigma = gaussian_MLP_encoder(x_hat, n_hidden, dim_z, keep_prob)
-
+    mu, sigma = encoder(x)
     # sampling by re-parameterization technique
-    z = mu + sigma * tf.random_normal(tf.shape(mu), 0, 1, dtype=tf.float32)
+    z = mu + sigma * torch.randn_like(mu)
+
+
+def get_loss(encoder, decoder, x, x_hat):
+    """
+
+    :param encoder:
+    :param decoder:
+    :param x: input
+    :param x_hat: target
+    :param dim_img:
+    :param dim_z:
+    :param n_hidden:
+    :param keep_prob:
+    :return:
+    """
+    # encoding
+    mu, sigma = encoder(x)
+    # sampling by re-parameterization technique
+    z = mu + sigma * torch.randn_like(mu)
 
     # decoding
-    y = bernoulli_MLP_decoder(z, n_hidden, dim_img, keep_prob)
-    y = tf.clip_by_value(y, 1e-8, 1 - 1e-8)
+    y = decoder(z)
+    y = torch.clamp(y, 1e-8, 1 - 1e-8)
+
 
     # loss
-    marginal_likelihood = tf.reduce_sum(x * tf.log(y) + (1 - x) * tf.log(1 - y), 1)
-    KL_divergence = 0.5 * tf.reduce_sum(tf.square(mu) + tf.square(sigma) - tf.log(1e-8 + tf.square(sigma)) - 1, 1)
-
-    marginal_likelihood = tf.reduce_mean(marginal_likelihood)
-    KL_divergence = tf.reduce_mean(KL_divergence)
+    marginal_likelihood = torch.sum(x_hat * torch.log(y) + (1 - x_hat) * torch.log(1 - y))
+    KL_divergence = 0.5 * torch.sum(
+                                torch.pow(mu, 2) +
+                                torch.pow(sigma, 2) -
+                                torch.log(1e-8 + torch.pow(sigma, 2)) - 1
+                                    )
 
     ELBO = marginal_likelihood - KL_divergence
 
@@ -90,8 +138,99 @@ def autoencoder(x_hat, x, dim_img, dim_z, n_hidden, keep_prob):
 
     return y, z, loss, -marginal_likelihood, KL_divergence
 
-def decoder(z, dim_img, n_hidden):
 
-    y = bernoulli_MLP_decoder(z, n_hidden, dim_img, 1.0, reuse=True)
-
-    return y
+# # Gaussian MLP as encoder
+# def gaussian_MLP_encoder(x, n_hidden, n_output, keep_prob):
+#     with tf.variable_scope("gaussian_MLP_encoder"):
+#         # initializers
+#         w_init = tf.contrib.layers.variance_scaling_initializer()
+#         b_init = tf.constant_initializer(0.)
+#
+#         # 1st hidden layer
+#         w0 = tf.get_variable('w0', [x.get_shape()[1], n_hidden], initializer=w_init)
+#         b0 = tf.get_variable('b0', [n_hidden], initializer=b_init)
+#         h0 = tf.matmul(x, w0) + b0
+#         h0 = tf.nn.elu(h0)
+#         h0 = tf.nn.dropout(h0, keep_prob)
+#
+#         # 2nd hidden layer
+#         w1 = tf.get_variable('w1', [h0.get_shape()[1], n_hidden], initializer=w_init)
+#         b1 = tf.get_variable('b1', [n_hidden], initializer=b_init)
+#         h1 = tf.matmul(h0, w1) + b1
+#         h1 = tf.nn.tanh(h1)
+#         h1 = tf.nn.dropout(h1, keep_prob)
+#
+#         # output layer
+#         # borrowed from https: // github.com / altosaar / vae / blob / master / vae.py
+#         wo = tf.get_variable('wo', [h1.get_shape()[1], n_output * 2], initializer=w_init)
+#         bo = tf.get_variable('bo', [n_output * 2], initializer=b_init)
+#         gaussian_params = tf.matmul(h1, wo) + bo
+#
+#         # The mean parameter is unconstrained
+#         mean = gaussian_params[:, :n_output]
+#         # The standard deviation must be positive. Parametrize with a softplus and
+#         # add a small epsilon for numerical stability
+#         stddev = 1e-6 + tf.nn.softplus(gaussian_params[:, n_output:])
+#
+#     return mean, stddev
+#
+#
+# # Bernoulli MLP as decoder
+# def bernoulli_MLP_decoder(z, n_hidden, n_output, keep_prob, reuse=False):
+#     with tf.variable_scope("bernoulli_MLP_decoder", reuse=reuse):
+#         # initializers
+#         w_init = tf.contrib.layers.variance_scaling_initializer()
+#         b_init = tf.constant_initializer(0.)
+#
+#         # 1st hidden layer
+#         w0 = tf.get_variable('w0', [z.get_shape()[1], n_hidden], initializer=w_init)
+#         b0 = tf.get_variable('b0', [n_hidden], initializer=b_init)
+#         h0 = tf.matmul(z, w0) + b0
+#         h0 = tf.nn.tanh(h0)
+#         h0 = tf.nn.dropout(h0, keep_prob)
+#
+#         # 2nd hidden layer
+#         w1 = tf.get_variable('w1', [h0.get_shape()[1], n_hidden], initializer=w_init)
+#         b1 = tf.get_variable('b1', [n_hidden], initializer=b_init)
+#         h1 = tf.matmul(h0, w1) + b1
+#         h1 = tf.nn.elu(h1)
+#         h1 = tf.nn.dropout(h1, keep_prob)
+#
+#         # output layer-mean
+#         wo = tf.get_variable('wo', [h1.get_shape()[1], n_output], initializer=w_init)
+#         bo = tf.get_variable('bo', [n_output], initializer=b_init)
+#         y = tf.sigmoid(tf.matmul(h1, wo) + bo)
+#
+#     return y
+#
+#
+# # Gateway
+# def autoencoder2(x_hat, x, dim_img, dim_z, n_hidden, keep_prob):
+#     # encoding
+#     mu, sigma = gaussian_MLP_encoder(x_hat, n_hidden, dim_z, keep_prob)
+#
+#     # sampling by re-parameterization technique
+#     z = mu + sigma * tf.random_normal(tf.shape(mu), 0, 1, dtype=tf.float32)
+#
+#     # decoding
+#     y = bernoulli_MLP_decoder(z, n_hidden, dim_img, keep_prob)
+#     y = tf.clip_by_value(y, 1e-8, 1 - 1e-8)
+#
+#     # loss
+#     marginal_likelihood = tf.reduce_sum(x * tf.log(y) + (1 - x) * tf.log(1 - y), 1)
+#     KL_divergence = 0.5 * tf.reduce_sum(tf.square(mu) + tf.square(sigma) - tf.log(1e-8 + tf.square(sigma)) - 1, 1)
+#
+#     marginal_likelihood = tf.reduce_mean(marginal_likelihood)
+#     KL_divergence = tf.reduce_mean(KL_divergence)
+#
+#     ELBO = marginal_likelihood - KL_divergence
+#
+#     loss = -ELBO
+#
+#     return y, z, loss, -marginal_likelihood, KL_divergence
+#
+#
+# def decoder(z, dim_img, n_hidden):
+#     y = bernoulli_MLP_decoder(z, n_hidden, dim_img, 1.0, reuse=True)
+#
+#     return y
